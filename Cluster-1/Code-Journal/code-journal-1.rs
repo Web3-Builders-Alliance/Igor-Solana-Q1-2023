@@ -45,7 +45,7 @@ pub fn process_instruction(
     // Trying to deserialize instruction data using Borch
     match PowerStatus::try_from_slice(&instruction_data) {
         /// On Success - goto initialize
-        /// ...and looks like here is simple on/off boolean (and we'll store this onchain?)...
+        /// ...and looks like here is simple on/off boolean ...
         Ok(power_status) => return initialize(program_id, accounts, power_status),
         Err(_) => {}, // deserialization f#c&up?
     }
@@ -142,8 +142,6 @@ pub fn switch_power(
         false => msg!("The power is now off!"),
     };
 
-    /// And looks like we not going to store new status onchain?
-    /// so this is just for show who is get access to power switch ...
     
     // if all above worked fine - return ok
     Ok(())
